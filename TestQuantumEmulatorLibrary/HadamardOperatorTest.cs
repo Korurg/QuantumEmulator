@@ -2,18 +2,14 @@ using NUnit.Framework;
 
 namespace Tests
 {
-    public class Tests
+    public class HadamardOperatorTest
     {
         [SetUp]
         public void Setup()
         {
-        }
-
-        [Test]
-        public void Test2()
-        {
             
         }
+        
 
         [Test]
         public void Test1()
