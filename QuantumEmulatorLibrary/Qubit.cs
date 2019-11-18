@@ -6,7 +6,7 @@ namespace QuantumEmulatorLibrary
     public class Qubit
     {
         private static Random _random = new Random();
-
+        
         private Complex _a;
         private Complex _b;
 
