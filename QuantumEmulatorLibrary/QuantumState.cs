@@ -5,16 +5,21 @@ namespace QuantumEmulatorLibrary
 {
     public class QuantumState
     {
-        private Complex[] _state;
+        private ComplexMatrix _state;
 
         public QuantumState(Complex[] state)
         {
-            this._state = state;
+            _state = new ComplexMatrix(state);
         }
+
+
 
         public QuantumState(params Qubit[] qubits)
         {
-            _state = new Complex[1 << qubits.Length];
+            _state = new ComplexMatrix(2, 1);
+            _state[0] = qubits[0].A;
+            _state[1] = qubits[0].B;
+            //TODO: сделать все случаи
         }
 
 
@@ -28,16 +33,8 @@ namespace QuantumEmulatorLibrary
 
             QuantumState state = obj as QuantumState;
 
-            if(state._state.Length!=_state.Length)
-                return false;
 
-            for (int i = 0; i < _state.Length; i++)
-            {
-                if(state._state[i]!=_state[i])
-                    return false;
-            }
-
-            return true;
+            return state._state.Equals(this._state);
         }
 
 
@@ -46,10 +43,12 @@ namespace QuantumEmulatorLibrary
             return base.GetHashCode();
         }
 
-        public override string ToString(){
+        public override string ToString()
+        {
             string result = "";
-            for(int i=0;i<_state.Length;i++){
-                result+=_state[i]+" ";
+            for (int i = 0; i < _state.Height; i++)
+            {
+                result += _state[i] + " ";
             }
             return result;
         }

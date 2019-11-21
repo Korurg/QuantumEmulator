@@ -10,7 +10,6 @@ namespace QuantumEmulatorLibrary
 
         private bool _transparent;
 
-
         public void Transparent()
         {
             _transparent = !_transparent;
@@ -37,6 +36,24 @@ namespace QuantumEmulatorLibrary
             }
         }
 
+        public Complex this[int i]
+        {
+            get
+            {
+                return _transparent ? _values[0, i] : _values[i, 0];
+            }
+            set
+            {
+                if (_transparent)
+                {
+                    _values[0, i] = value;
+                }
+                else
+                {
+                    _values[i, 0] = value;
+                }
+            }
+        }
         public Complex this[int i, int j]
         {
             get
@@ -77,7 +94,20 @@ namespace QuantumEmulatorLibrary
 
         }
 
+        public ComplexMatrix(Qubit q)
+        {
 
+        }
+
+        public ComplexMatrix(Complex[] state)
+        {
+            this._values = new Complex[1 << state.Length, 1];
+
+            for (int i = 0; i < state.Length; i++)
+            {
+
+            }
+        }
 
         public override bool Equals(object obj)
         {

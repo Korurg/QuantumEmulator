@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumEmulatorLibrary", "Q
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleQuantumEmulator", "SampleQuantumEmulator\SampleQuantumEmulator.csproj", "{27660578-39CF-4C1A-B72F-5FA5865D71F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestQuantumEmulatorLibrary", "TestQuantumEmulatorLibrary\TestQuantumEmulatorLibrary.csproj", "{6850D5A0-4864-471F-9E11-B7D26A9C4D12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestQuantumEmulatorLibrary", "TestQuantumEmulatorLibrary\TestQuantumEmulatorLibrary.Tests.csproj", "{6850D5A0-4864-471F-9E11-B7D26A9C4D12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
