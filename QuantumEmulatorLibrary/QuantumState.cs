@@ -7,19 +7,19 @@ namespace QuantumEmulatorLibrary
     {
         private ComplexMatrix _state;
 
-        public QuantumState(Complex[] state)
+        public QuantumState(params Complex[] state)
         {
             _state = new ComplexMatrix(state);
         }
 
-
-
         public QuantumState(params Qubit[] qubits)
         {
-            _state = new ComplexMatrix(2, 1);
-            _state[0] = qubits[0].A;
-            _state[1] = qubits[0].B;
-            //TODO: сделать все случаи
+            ComplexMatrix t = new ComplexMatrix(qubits[0]);
+            for (int i = 1; i < qubits.Length; i++)
+            {
+                t = ComplexMatrix.TensorProduct(t, new ComplexMatrix(qubits[i]));
+            }
+            _state = t;
         }
 
 

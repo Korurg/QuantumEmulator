@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using QuantumEmulatorLibrary;
 
-namespace TestQuantumEmulatorLibrary
+namespace Tests
 {
     public class ComplexMatrixTest
     {
@@ -66,6 +66,29 @@ namespace TestQuantumEmulatorLibrary
 
 
             Assert.AreEqual(expected, ComplexMatrix.TensorProduct(m1, m2));
+        }
+
+        [Test]
+        public void MultiplicationTest()
+        {
+            ComplexMatrix m1 = new ComplexMatrix(new int[,]{
+                    {1,2,3},
+                    {1,2,3}
+                });
+
+            ComplexMatrix m2 = new ComplexMatrix(new int[,]{
+                    {1,1},
+                    {2,2},
+                    {3,3}
+                });
+
+            ComplexMatrix expected = new ComplexMatrix(new int[,]{
+                   {14, 14},
+                   {14, 14}
+                });
+
+
+            Assert.AreEqual(expected, ComplexMatrix.Multiplication(m1, m2));
         }
 
     }

@@ -96,16 +96,34 @@ namespace QuantumEmulatorLibrary
 
         public ComplexMatrix(Qubit q)
         {
+            _values = new Complex[2, 1];
+            _values[0, 0] = q.A;
+            _values[1, 0] = q.B;
+        }
 
+        public static ComplexMatrix Multiplication(ComplexMatrix m1, ComplexMatrix m2)
+        {
+            ComplexMatrix result = new ComplexMatrix(m1.Height, m2.Width);
+            for (int i = 0; i < m1.Height; i++)
+            {
+                for (int j = 0; j < m2.Width; j++)
+                {
+                    for (int k = 0; k < m1.Width; k++)
+                    {
+                        result[i,j]+=m1[i,k]*m2[k,j];
+                    }
+                }
+            }
+            return result;
         }
 
         public ComplexMatrix(Complex[] state)
         {
-            this._values = new Complex[1 << state.Length, 1];
+            this._values = new Complex[state.Length, 1];
 
             for (int i = 0; i < state.Length; i++)
             {
-
+                _values[i, 0] = state[i];
             }
         }
 
