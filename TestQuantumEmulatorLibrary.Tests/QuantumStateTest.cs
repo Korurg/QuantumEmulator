@@ -1,6 +1,7 @@
 using System.Numerics;
 using NUnit.Framework;
 using QuantumEmulatorLibrary;
+using static QuantumEmulatorLibrary.VirtualQuantumMachine;
 
 namespace Tests
 {
@@ -15,11 +16,11 @@ namespace Tests
         public void CreateState01_01_0001()
         {
 
-            Qubit q1 = new Qubit(Complex.Zero, new Complex(1, 0));
-            Qubit q2 = new Qubit(Complex.Zero, new Complex(1, 0));
+            VirtualQubit q1 = new VirtualQubit(Complex.Zero, new Complex(1, 0), 0);
+            VirtualQubit q2 = new VirtualQubit(Complex.Zero, new Complex(1, 0), 0);
 
-            QuantumState quantumState = new QuantumState(q1, q2);
-            QuantumState expected = new QuantumState(new Complex[] {
+            VirtualQuantumState quantumState = new VirtualQuantumState(q1, q2);
+            VirtualQuantumState expected = new VirtualQuantumState(new Complex[] {
                 Complex.Zero,
                 Complex.Zero,
                 Complex.Zero,

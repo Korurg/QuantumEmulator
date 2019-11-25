@@ -94,7 +94,7 @@ namespace QuantumEmulatorLibrary
 
         }
 
-        public ComplexMatrix(Qubit q)
+        public ComplexMatrix(IVirtualQubit q)
         {
             _values = new Complex[2, 1];
             _values[0, 0] = q.A;

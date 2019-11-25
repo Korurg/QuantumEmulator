@@ -1,18 +1,20 @@
 using System;
 using System.Numerics;
+using static QuantumEmulatorLibrary.VirtualQuantumMachine;
 
 namespace QuantumEmulatorLibrary
 {
-    public class QuantumState
+    public class VirtualQuantumState
     {
         private ComplexMatrix _state;
 
-        public QuantumState(params Complex[] state)
+        
+        public VirtualQuantumState(params Complex[] state)
         {
             _state = new ComplexMatrix(state);
         }
 
-        public QuantumState(params Qubit[] qubits)
+        public VirtualQuantumState(params IVirtualQubit[] qubits)
         {
             ComplexMatrix t = new ComplexMatrix(qubits[0]);
             for (int i = 1; i < qubits.Length; i++)
@@ -31,7 +33,7 @@ namespace QuantumEmulatorLibrary
                 return false;
             }
 
-            QuantumState state = obj as QuantumState;
+            VirtualQuantumState state = obj as VirtualQuantumState;
 
 
             return state._state.Equals(this._state);

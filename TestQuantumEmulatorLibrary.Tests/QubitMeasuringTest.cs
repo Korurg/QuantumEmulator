@@ -2,6 +2,7 @@
 using System.Numerics;
 using NUnit.Framework;
 using QuantumEmulatorLibrary;
+using static QuantumEmulatorLibrary.VirtualQuantumMachine;
 
 namespace Tests
 {
@@ -16,27 +17,27 @@ namespace Tests
         [Test]
         public void TestMeasuring0()
         {
-            Qubit qubit = Qubit.Zero;
-            
-            Assert.AreEqual(0,Qubit.Measure(qubit));
+            IVirtualQubit qubit = VirtualQubit.Zero(0);
+
+            Assert.AreEqual(0, qubit.Measure());
         }
-        
+
         [Test]
         public void TestMeasuring1()
         {
-            Qubit qubit = Qubit.One;
-            
-            Assert.AreEqual(1,Qubit.Measure(qubit));
+            IVirtualQubit qubit = VirtualQubit.One(0);
+
+            Assert.AreEqual(1, qubit.Measure());
         }
 
         [Test]
         public void TestMeasuringAB()
         {
-            Qubit qubit = new Qubit(new Complex(Math.Sqrt(2),0), new Complex(Math.Sqrt(2),0));
-            
-            
-            Assert.AreEqual(new Complex(Math.Sqrt(2),0),qubit.A);
-            Assert.AreEqual(new Complex(Math.Sqrt(2),0),qubit.B);
+            IVirtualQubit qubit = new VirtualQubit(new Complex(Math.Sqrt(2), 0), new Complex(Math.Sqrt(2), 0), 0);
+
+
+            Assert.AreEqual(new Complex(Math.Sqrt(2), 0), qubit.A);
+            Assert.AreEqual(new Complex(Math.Sqrt(2), 0), qubit.B);
         }
     }
 }

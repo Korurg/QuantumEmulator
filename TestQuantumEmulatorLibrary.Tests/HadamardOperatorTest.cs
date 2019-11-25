@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using QuantumEmulatorLibrary;
 
 namespace Tests
 {
@@ -18,8 +19,7 @@ namespace Tests
             IQubit[] qubits = machine.Initialize(8);
             
 
-
-            HadamardOperator.Apply(qubits[1]);
+            machine.HadamardOperator(qubits[1]);
 
 
             Assert.AreEqual(0,qubits[0].Measure());
