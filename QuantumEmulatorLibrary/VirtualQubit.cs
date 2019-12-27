@@ -1,63 +1,59 @@
 ﻿using System;
 using System.Numerics;
 
-namespace QuantumEmulatorLibrary
-{
+namespace QuantumEmulatorLibrary {
 
-    public class VirtualQubit : IVirtualQubit
-    {
-        private static Random _random = new Random();
+    public class VirtualQubit : IVirtualQubit {
+        private static Random _random = new Random ();
 
-        private Complex _a;
-        private Complex _b;
-        private int _position;
+        private int _position = -1;
+        public int Position => _position;
 
-        public Complex A
-        {
-            get { return _a; }
+        private VirtualQuantumState _quantumState;
+        public VirtualQuantumState QuantumState => _quantumState;
+
+        public Complex this[int position]{
+            get{
+                return _quantumState[position];
+            }
         }
 
-        public Complex B
-        {
-            get { return _b; }
-        }
-
-
-        public VirtualQubit(Complex a, Complex b, int position)
-        {
-            _a = a;
-            _b = b;
+        public VirtualQubit (Complex a, Complex b, int position) {
+            _quantumState = new VirtualQuantumState (a, b);
             _position = position;
         }
 
-
-        public byte Measure()
-        {
-            return VirtualQubit.Measure(this);
+        public VirtualQubit (Complex a, Complex b) {
+            _quantumState = new VirtualQuantumState (a, b);
         }
 
-        public static byte Measure(VirtualQubit qubit)
-        {
-            double p1 = MathComplex.Square(qubit._a).Real;
-
-            double p = _random.NextDouble();
-
-
-            return p < p1 ? (byte)0 : (byte)1;
+        public byte Measure () {
+            return VirtualQubit.Measure (this);
         }
 
-        public static IVirtualQubit Zero(int position)
-        {
-            return new VirtualQubit(new Complex(1, 0), new Complex(0, 0), position);
+        public static byte Measure (VirtualQubit qubit) {
+            double p1 = MathComplex.Square (qubit._quantumState[0]).Real;
+
+            double p = _random.NextDouble ();
+
+            return p < p1 ? (byte) 0 : (byte) 1;
         }
 
-        public static IVirtualQubit One(int position)
-        {
-            return new VirtualQubit(new Complex(1, 0), new Complex(0, 0), position);
+        public static IVirtualQubit Zero () {
+            return new VirtualQubit (new Complex (1, 0), new Complex (0, 0));
         }
 
+        public static IVirtualQubit One () {
+            return new VirtualQubit (new Complex (0, 0), new Complex (1, 0));
+        }
 
-        public int Position => _position;
+        public static IVirtualQubit Zero (int position) {
+            return new VirtualQubit (new Complex (1, 0), new Complex (0, 0), position);
+        }
+
+        public static IVirtualQubit One (int position) {
+            return new VirtualQubit (new Complex (0, 0), new Complex (1, 0), position);
+        }
     }
 
 }
